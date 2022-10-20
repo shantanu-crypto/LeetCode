@@ -5,26 +5,23 @@ public:
         // for(int i=0;i<nums.size();i++){
         //     st.insert(nums[i]);
         // }
-        sort(nums.begin(),nums.end());
         vector<int> vec;
-        unordered_map<int,int> mp;
-        for(int i=1;i<=nums.size();i++){
-            mp[i]=0;
-        }
+        sort(nums.begin(),nums.end());
+        int sum=0;
         for(int i=0;i<nums.size();i++){
-            mp[nums[i]]++;
+            sum+=nums[i];
         }
-        
-        for(auto it:mp){
-            if(it.second==2){
-                vec.push_back(it.first);
+        int n=nums.size();
+        int x=((n)*(n+1))/2;
+        for(int i=0;i<n-1;++i){
+            if(nums[i]==nums[i+1]){
+                vec.push_back(nums[i]);
+                sum-=nums[i];
+                break;
             }
         }
-        for(auto it:mp){
-            if(it.second==0){
-                vec.push_back(it.first);
-            }
-        }
+        x-=sum;
+        vec.push_back(x);
         return vec;
     }
 };
